@@ -11,9 +11,9 @@ import java.time.Duration;
 public class GoogleLoginPopUp {
     private WebDriver driver;
     private String EMAIL = "#identifierId";
-    private String NEXT = "#identifierNext .VfPpkd-RLmnJb";
+    private String NEXT = "#identifierNext [jscontroller]";
     private String PASSWORD = "input[name='password']";
-    private String password_NEXT = "#passwordNext .VfPpkd-vQzf8d";
+    private String password_NEXT = "#passwordNext [jscontroller]";
 
 
     public GoogleLoginPopUp(WebDriver driver) {
@@ -25,7 +25,6 @@ public class GoogleLoginPopUp {
         wait.until(ExpectedConditions.numberOfWindowsToBe(2));
 
         String parentWindow = driver.getWindowHandle();
-        System.out.println(driver.getWindowHandles().size());
 
         for (String windowHandle : driver.getWindowHandles()) {
             driver.switchTo().window(windowHandle);
@@ -37,7 +36,7 @@ public class GoogleLoginPopUp {
         WebElement emailField = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(EMAIL)));
         emailField.sendKeys("rahul.quality.analyst@gmail.com");
         driver.findElement(By.cssSelector(NEXT)).click();
-        WebElement passwordField = wait.until(ExpectedConditions.presenceOfElementLocated(By.name(PASSWORD)));
+        WebElement passwordField = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(PASSWORD)));
         passwordField.sendKeys("1@mThestar19");
         driver.findElement(By.cssSelector(password_NEXT)).click();
 
